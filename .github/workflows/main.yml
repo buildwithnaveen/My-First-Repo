@@ -11,21 +11,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-
-      - name: Debug secret
-        run: |
-          echo "GitHub PAT secret is set: ${{ secrets.GH_PAT }}"
-
       - name: Run commit script
         run: |
-          git config --global user.email "naveen.devmail@gmail.com"
-          git config --global user.name "buildwithnaveen"
-          COMMIT_MSG="OOps a commit $(date +'%Y-%m-%d %H:%M:%S')"
-          echo "Commit message: $COMMIT_MSG"
-          git commit --allow-empty -m "$COMMIT_MSG"
-          git push https://x-access-token:${{ secrets.GH_PAT }}@github.com/buildwithnaveen/My-First-Repo.git
-
-      - name: Check push status
-        run: |
-          git status
-          git log -n 1
+           git config --global user.email "naveen.devmail@gmail.com"
+           git config --global user.name "buildwithnaveen"
+           git commit --allow-empty -m "OOps a commit `date +'%Y-%m-%d %H:%M:%S'`" 
+           git push https://x-access-token:${{ secrets.GH_PAT }}@github.com/buildwithnaveen/My-First-Repo.git
